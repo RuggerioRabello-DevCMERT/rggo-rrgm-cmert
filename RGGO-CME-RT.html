@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RGGO / CME-RT</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    
+	<div class="direitos">
+		<span> Desenvolvido por: Ruggerio Rabello V 1.02</span>
+	</div>
+	
+	<div class="topo">
+        <img src="C:\Users\SEAP\Desktop\RGGO-CME-TR\img\topo.png">
+    </div>
+	
+
+    <div class="centro">
+
+        <form id="oficioForm">
+			<span> DESCRIÇÃO DO OFICIO:</span>
+            <input class="descri" type="text" id="assunto" name="assunto" placeholder=" DIGITE AQUI A DESCRIÇÃO BASICA DO DOCUMENTO... ">
+
+            <p>SELECIONE USUARIO / CME-RT DEPARTAMENTO JURIDICO:</p>
+			
+			<input type="radio" id="IPP MAIA" name="usuario" value="IPP MAIA">
+            <label for="usuario1">IPP MAIA</label>
+
+            <input type="radio" id="IPP FERNANDA" name="usuario" value="IPP FERNANDA">
+            <label for="usuario1">IPP FERNANDA</label>
+			
+			<input type="radio" id="IPP HUGO" name="usuario" value="IPP HUGO">
+            <label for="usuario1">IPP HUGO</label>
+			
+			<input type="radio" id="APT RUGGERIO" name="usuario" value="APT RUGGERIO">
+            <label for="usuario1">APT RUGGERIO</label>
+
+			<input type="radio" id="APT PAULO" name="usuario" value="APT PAULO">
+            <label for="usuario1">APT PAULO</label>
+			
+			<input type="radio" id="ASP SOARES" name="usuario" value="ASP SOARES">
+            <label for="usuario1">ASP SOARES</label>
+			
+			<input type="radio" id="ASP LETICIA" name="usuario" value="ASP LETICIA">
+            <label for="usuario1">ASP LETICIA</label>	
+
+			<input type="radio" id="ASP LUCAS" name="usuario" value="ASP LUCAS">
+            <label for="usuario1">ASP LUCAS</label>			
+
+            <button type="button" id="gerarOficio">NOVO OFÍCIO</button>
+
+        </form>
+
+        <div class="info">
+            <p>N° DE OFICIO ATUAL:<BR> <span id="contador">421</span> /2024</p>
+        </div>
+
+        <div class="hist">
+            <h2>HISTORICO DE OFICIOS GERADOS:</h2>
+            <ul id="historicoOficios">
+                <!-- Historical ofícios will be displayed here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+		//impede o acionamento da tecla enter
+		document.getElementById("assunto").addEventListener("keypress", function(event) {
+        // Verifica se a tecla pressionada é a tecla Enter
+        
+		if (event.key === "Enter") {
+            // Impede o comportamento padrão (envio do formulário)
+            event.preventDefault();
+        }
+		});
+		
+        // Objeto para armazenar o número do ofício, o nome do usuário e o assunto
+        const oficioData = {
+            numeroOficio: 421,
+            ultimoUsuario: "Nenhum",
+            historicoOficios: []
+        };
+
+        // Função para incrementar o contador, atualizar a exibição e manter um histórico de ofícios
+        function incrementarContador(assunto) {
+            const contadorElement = document.getElementById('contador');
+            const historicoOficios = document.getElementById('historicoOficios');
+
+            oficioData.numeroOficio++;
+            contadorElement.textContent = oficioData.numeroOficio;
+
+            // Obtém o nome do último usuário selecionado
+            const radios = document.querySelectorAll('input[name="usuario"]');
+            radios.forEach((radio) => {
+                if (radio.checked) {
+                    oficioData.ultimoUsuario = radio.value;
+                }
+            });
+
+            // Adiciona o ofício ao histórico
+            oficioData.historicoOficios.push({ numero: oficioData.numeroOficio, usuario: oficioData.ultimoUsuario, assunto });
+
+            // Atualiza o histórico de ofícios na página
+            historicoOficios.innerHTML = '';
+            oficioData.historicoOficios.forEach((oficio, index) => {
+                const li = document.createElement('li');
+                li.textContent = `Ofício #${oficio.numero} - Gerado por: ${oficio.usuario} - Assunto: ${oficio.assunto}`;
+                historicoOficios.appendChild(li);
+            });
+        }
+
+        // Adiciona um evento de clique ao botão "Novo Ofício" com validação
+        const botaoGerar = document.getElementById('gerarOficio');
+        botaoGerar.addEventListener('click', () => {
+            const assuntoInput = document.getElementById('assunto');
+            
+            if (verificarSelecao()) {
+                if (assuntoInput.value) {
+                    incrementarContador(assuntoInput.value);
+                    assuntoInput.value = ''; // Clear the subject input field after generating the ofício
+                } else {
+                    alert("POR FAVOR, ADICIONE A DESCRIÇÃO DO OFÍCIO...");
+                }
+            } else {
+                alert("POR FAVOR, SELECIONE O USUARIO QUE IRÁ GERAR O OFÍCIO...");
+            }
+        });
+
+        // Função para verificar se uma opção de rádio foi selecionada
+        function verificarSelecao() {
+            const radios = document.querySelectorAll('input[name="usuario"]');
+            let selecionado = false;
+
+            radios.forEach((radio) => {
+                if (radio.checked) {
+                    selecionado = true;
+                }
+            });
+
+            return selecionado;
+        }
+    </script>
+	
+</body>
+</html>
