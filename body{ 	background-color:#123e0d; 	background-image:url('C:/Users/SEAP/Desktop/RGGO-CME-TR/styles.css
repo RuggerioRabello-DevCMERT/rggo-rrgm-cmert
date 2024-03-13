@@ -1,0 +1,95 @@
+ 
+body{
+	background-color:#123e0d;
+	background-image:url('C:/Users/SEAP/Desktop/RGGO-CME-TR/monit.png');
+	background-repeat:no-repeat;
+	background-size:cover;
+    width:1024px;
+	margin-left:auto;
+	margin-right:auto;
+}	
+
+div.topo{
+	margin-top:40px;
+	margin-bottom:40px;
+}
+
+div.centro{
+	background-image:url("C:\Users\Ruggerio\Desktop\RGGO-CME-TR\img\back_center.png");
+	width:1024px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+div.centro form p{
+	color:white;
+	font-size:18px;
+	font-family:tahoma;
+}
+div.centro form span{	
+	color:white;
+	font-size:18px;
+	font-family:tahoma;
+}
+
+div.centro form input.descri{
+
+	border-radius:5px;
+	border:none;
+	height:30px;
+	width:550px;
+}
+
+div.centro form label{
+	color:white;
+	font-size:16px;
+	font-family:tahoma;
+	margin-right:12px;
+}
+
+div.centro form button{
+	width:200px;
+	height:50px;
+	font-size:20px;
+	font-family:tahoma;
+	margin-top:20px;
+	margin-left:412px;
+	
+}
+
+div.info {
+	margin-left:800px;
+	color:white;
+	font-size:20px;
+	font-family:tahoma;
+}
+div.info span{
+	color:white;
+	font-size:60px;
+	font-family:tahoma;
+}
+
+div.hist {
+	color:white;
+	font-size:16px;
+	font-family:tahoma;
+	
+	
+}
+
+div.hist h2{
+	color:white;
+	font-size:16px;
+	font-family:tahoma;
+}
+div.direitos{
+	margin-top:-30px;
+	float:right;
+	
+}
+div.direitos span{
+	color:white;
+	font-size:10px;
+	font-family:tahoma;
+	
+}
